@@ -1,0 +1,22 @@
+<%- include("partials/header", { title: "Greetings - Node Starter" }) %>
+<h1>Greetings</h1>
+<div class="card">
+    <form method="POST" action="/greetings">
+        <input type="text" name="message" placeholder="Enter a message" required>
+        <button type="submit">Send</button>
+    </form>
+
+    <% if (greetings.length > 0) { %>
+    <ul>
+        <% greetings.forEach((greeting) => { %>
+        <li>
+            <%= greeting.message %>
+            <span class="time"><%= new Date(greeting.created_at).toISOString().slice(0, 16).replace("T", " ") %></span>
+        </li>
+        <% }) %>
+    </ul>
+    <% } else { %>
+    <p>No messages yet.</p>
+    <% } %>
+</div>
+<%- include("partials/footer") %>
